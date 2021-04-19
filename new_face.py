@@ -15,18 +15,14 @@ def captureFrame(event,x,y,flags,frame):
 
 
 
-# path = 'img128\\'
-# for i in glob(path + '*.png'):
-#   filename = i.replace(path, '')
-#   name = filename.replace('.png', '')
-#   try:
+# try:
 #     id = face_recognition.face_encodings(face_recognition.load_image_file(i), model='large')[0]
 #     data = {'name': name, 'id': id.tolist()}
 #     col.insert_one(data)
 #     print(name)
-#   except IndexError:
+# except IndexError:
 #     error_col.insert_one({'name': name})
 #     print('cannot add: ', name)
 #
 # client.close()
-# print('finished')
+# print('new face saved')

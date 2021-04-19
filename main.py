@@ -40,7 +40,7 @@ while True:
         cv2.putText(frame, result, (left - 1, bottom + 24),
                     cv2.FONT_HERSHEY_DUPLEX, 1.0, (255, 0, 0), 1)
         print(result)
-
+# mouse click to save frame
     cv2.setMouseCallback(frame_name, new_face.captureFrame, frame)
     cv2.imshow(frame_name, frame)
     if cv2.waitKey(1) & 0xFF == 27: break

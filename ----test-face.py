@@ -14,11 +14,9 @@ with mp_face_detection.FaceDetection(
       # If loading a video, use 'break' instead of 'continue'.
       continue
 
-    # Flip the image horizontally for a later selfie-view display, and convert
-    # the BGR image to RGB.
+    # BGR to RGB.
     image = cv2.cvtColor(cv2.flip(image, 1), cv2.COLOR_BGR2RGB)
-    # To improve performance, optionally mark the image as not writeable to
-    # pass by reference.
+    # To improve performance, optionally mark the image as not writeable to pass by reference.
     image.flags.writeable = False
     results = face_detection.process(image)
 
