@@ -6,10 +6,11 @@ client, db, col, error_col = access_db()
 result = col.find()
 error_col = db['error']
 
-path = 'img128\\'
-for i in glob(path + '*.png'):
+path = 'new/'
+ext = '.jpg'
+for i in glob(path + '*' + ext):
   filename = i.replace(path, '')
-  name = filename.replace('.png', '')
+  name = filename.replace(ext, '')
   try:
     id = face_recognition.face_encodings(face_recognition.load_image_file(i), model='large')[0]
     data = {'name': name, 'id': id.tolist()}

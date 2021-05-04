@@ -30,7 +30,7 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>main</string>
+   <string>face_rec</string>
   </property>
   <property name="windowIcon">
    <iconset>
@@ -67,12 +67,12 @@
     <set>Qt::AlignCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="menu">
+  <widget class="QPushButton" name="add">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>1200</y>
-     <width>141</width>
+     <width>251</width>
      <height>81</height>
     </rect>
    </property>
@@ -85,7 +85,7 @@
     </font>
    </property>
    <property name="text">
-    <string>Menu</string>
+    <string>Add_New_Face</string>
    </property>
    <property name="default">
     <bool>true</bool>

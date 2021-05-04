@@ -14,8 +14,7 @@ from PyQt5.QtWidgets import QDialog, QMessageBox
 from PyQt5.uic import loadUi
 
 
-threshold = 0.3
-client, db, col, error_col = access_db()
+_, _, col, error_col = access_db()
 n = list(col.find({}))
 
 class Face_Recognition(QDialog):
@@ -65,12 +64,6 @@ class Face_Recognition(QDialog):
         self.timer.start(10)  # emit the timeout() signal at x=40ms
 
     def face_rec_(self, frame, encode_list_known, class_names):
-        """
-        :param frame: frame from camera
-        :param encode_list_known: known face encoding
-        :param class_names: known face names
-        :return:
-        """
         # csv
         def mark_attendance(name):
             if self.ClockInButton.isChecked():
@@ -128,6 +121,7 @@ class Face_Recognition(QDialog):
 
     # face recognition
         s = time()
+        threshold = 0.35
         face_locations = face_recognition.face_locations(frame)
         face_encodings = face_recognition.face_encodings(frame, face_locations)
         for (top, right, bottom, left), face_encoding in zip(face_locations, face_encodings):
@@ -140,7 +134,7 @@ class Face_Recognition(QDialog):
             cv2.rectangle(frame, (left, top), (right, bottom), (0, 0, 255), 2)
             cv2.putText(frame, name, (left - 1, bottom + 24), cv2.FONT_HERSHEY_DUPLEX, 1.0, (255, 0, 0), 1)
             print(name)
-            mark_attendance(name)
+            # mark_attendance(name)
         # calculate fps
             seconds = time() - s
             fps = 1 / seconds
@@ -193,7 +187,7 @@ class Face_Recognition(QDialog):
         :param class_names: known face names
         :param window: number of window
         """
-        image = cv2.resize(image, (640, 480))
+        # image = cv2.resize(image, (640, 480))
         try:
             image = self.face_rec_(image, encode_list, class_names)
         except Exception as e:

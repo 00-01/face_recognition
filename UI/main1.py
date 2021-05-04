@@ -22,21 +22,24 @@ class Face_Recognition(QDialog):
         super(Face_Recognition, self).__init__()
         loadUi("./main.ui", self)
         # self.add.clicked.connect(add_new())
-        self.startVideo(0)
+        # self.startVideo()
         self.image = None
-
+        self.capture = cv2.VideoCapture(0)
+        self.displayImage(self.image, code, id, 1)
     @pyqtSlot()
-    def startVideo(self, camera_name):
-        self.capture = cv2.VideoCapture(camera_name)
+    # def startVideo(self):
+        # self.class_names = [i['name'] for i in n]
+        # self.encode_list = [j['id'] for j in n]
 
     def face_rec_(self, frame, encode_list_known, class_names):
         threashold = 0.35
         window_name = 'face_detection'
+        ret, self.image = self.capture.read()
         cap = cv2.VideoCapture(0)
         while True:
             s = time()
-            ret, frame = cap.read(0)  # read grayscale
-            frame = cv2.flip(frame, 1)  # flip horizontally
+            # ret, frame = cap.read(0)  # read grayscale
+            # frame = cv2.flip(frame, 1)  # flip horizontally
             # rgb_frame = frame[:, :, ::-1]  # GBR to RGB
 
             face_locations = face_recognition.face_locations(frame)
@@ -66,9 +69,8 @@ class Face_Recognition(QDialog):
         # cap.release()
         # cv2.destroyAllWindows()
 
-    def update_frame(self):
-        ret, self.image = self.capture.read()
-        self.displayImage(self.image, self.encode_list, self.class_names, 1)
+    # def update_frame(self):
+
 
     def displayImage(self, image, encode_list, class_names, window=1):
         try:
